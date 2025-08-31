@@ -13,7 +13,7 @@ Following these steps ensures that your storage is always available after a rebo
 
 Volume type: gp3 or gp2 (General Purpose SSD) is suitable for most use cases.
 
-Size (GiB): Choose your desired size, for example, 20.
+Size (GiB): Choose your desired size, for example, 12.
 
 Availability Zone: This is critical. You must select the same Availability Zone as your EC2 instance.
 
@@ -48,6 +48,7 @@ lsblk
 ```
 Example Output:
 <img width="765" height="250" alt="vol-mount1" src="https://github.com/user-attachments/assets/ef170052-02a8-4020-870a-ba6285a5feb2" />
+
 In this example, /dev/xvdf is our new 12 GiB volume.
 
 3. Check for an Existing Filesystem
@@ -81,6 +82,7 @@ sudo blkid
 ```
 Example Output:
 <img width="1817" height="204" alt="vol-mount2" src="https://github.com/user-attachments/assets/74a521d6-633f-479b-896a-4b72a7baf8b0" />
+
 Copy the UUID value for your device (/dev/xvdf in this case).
 
 2. Back Up Your fstab File
@@ -97,7 +99,7 @@ sudo nano /etc/fstab
 Add the following line to the end of the file. Replace the UUID and mount point with your own values.
 ```
 # <device_UUID>                             <mount_point>   <filesystem>  <options>         <dump> <pass>
-UUID=e5f6g7h8-1234-5678-9abc-1a2b3c4d5e6f  /var/www/html   ext4          defaults,nofail   0      2
+UUID=1933a113-c31b-4cad-a2b7-372d4b3b263     /var/www/html   ext4          defaults,nofail   0      2
 ```
 
 ``` UUID ```=...: The unique ID you copied.
